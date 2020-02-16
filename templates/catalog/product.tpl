@@ -33,6 +33,31 @@
   <section id="main">
     <div class="row">
       <div class="col-md-6">
+        {block name='page_header_container'}
+            {block name='page_header'}
+              <h1 class="h1">{block name='page_title'}{$product.name}{/block}</h1>
+            {/block}
+        {/block}
+      </div> 
+    </div>
+    <div class="row">
+      <div style="padding-left: 15px; font-size:13px; line-height: 24px;">Chu kì:</div>
+      <ul class="product_period">
+        {foreach from=Tag::getProductTags(Tools::getValue("id_product")) key=k item=v}
+          {foreach from=$v item=value}
+            {if $value|strstr:"period"}
+            <li>
+              <a href="#">
+                {$value|escape:html:'UTF-8'|substr:6} tháng
+              </a>
+            </li>
+            {/if}
+          {/foreach}
+        {/foreach}
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-6">        
         {block name='page_content_container'}
           <section class="page-content--product" id="content">
             {block name='page_content'}
@@ -50,11 +75,6 @@
         {/block}
         </div>
         <div class="col-md-6">
-          {block name='page_header_container'}
-            {block name='page_header'}
-              <h1 class="h1">{block name='page_title'}{$product.name}{/block}</h1>
-            {/block}
-          {/block}
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}
           {/block}

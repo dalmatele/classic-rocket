@@ -27,8 +27,12 @@
 
 
     {block name='product_price'}
-      <div class="product__product-price product-price {if $product.has_discount}has-discount{/if}">
-      {block name='product_discount'}
+      <div class="product__product-price product-price {if $product.has_discount}has-discount{/if}">      
+
+        <div class="current-price">
+          <span class="current-price-display price{if $product.has_discount} current-price-discount{/if}">Giá đơn vị: {$product.price}</span>
+        </div>
+        {block name='product_discount'}
           {if $product.has_discount}
               <span class="product-discount">
                   {hook h='displayProductPriceBlock' product=$product type="old_price"}
@@ -36,19 +40,6 @@
               </span>
           {/if}
       {/block}
-
-        <div class="current-price">
-          <span class="current-price-display price{if $product.has_discount} current-price-discount{/if}">{$product.price}</span>
-          {if $product.has_discount}
-            {if $product.discount_type === 'percentage'}
-              <span class="discount discount-percentage">{l s='Save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]}</span>
-            {else}
-              <span class="discount discount-amount">
-                  {l s='Save %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_to_display]}
-              </span>
-            {/if}
-          {/if}
-        </div>
 
         {block name='product_unit_price'}
           {if $displayUnitPrice}

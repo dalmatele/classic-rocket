@@ -21,6 +21,14 @@ We use [Dareboost](https://www.dareboost.com/) to test and improve our work.
 PR on branch develop please
 
 ## Main differences with Classic Theme
+### How to install
+* Clone this repo to a child folder of your `themes` folder
+`git clone https://github.com/dalmatele/classic-rocket.git wbshop`
+* Install `ps_searchbarjqauto` module:
+  * Access Prestashop admin.
+  * Access Module manage
+  * Install module from `dependencies/modules/ps_searchbarjqauto/ps_searchbarjqauto.zip`
+* Access Design->Themes & Logo and active `wbshop` theme.
 ### Performance
 With the same server (gzip, PrestaShop performance settings properly adjusted)
 - CSS: from 80 Ko (with Classic theme) to 33 Ko
