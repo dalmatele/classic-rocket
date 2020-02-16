@@ -22,7 +22,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="product-add-to-cart">
+<div class="product-add-to-cart">  
   {if !$configuration.is_catalog}
 
     {block name='product_quantity'}
@@ -50,8 +50,9 @@
               disabled
             {/if}
           >
-            <i class="material-icons shopping-cart btn-add-to-cart__icon">&#xE547;</i><span class="btn-add-to-cart__spinner" role="status" aria-hidden="true"></span>
-            {l s='Add to cart' d='Shop.Theme.Actions'}
+            <i class="material-icons shopping-cart btn-add-to-cart__icon">&#xE547;</i>
+            <span class="btn-add-to-cart__spinner" role="status" aria-hidden="true"></span>
+            Thêm vào giỏ hàng
           </button>
         </div>
           {hook h='displayProductActions' product=$product}

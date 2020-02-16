@@ -22,60 +22,57 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *}
-<div class="images-container">
+<div class="images-container" style="overflow:hidden;">
   {block name='product_cover'}
-      <div class="position-relative">
-  <div class="products-imagescover mb-2" data-slick='{literal}{"asNavFor":"[data-slick].product-thumbs","rows": 0,"slidesToShow": 1,"arrows":false}{/literal}' data-count="{$product.images|count}">
-   <div class="product-img">
-       <div class="">
-           {if $product.cover}
+    <div class="position-relative" style="float:left; width: 70%;">
+        <div class="products-imagescover mb-2" data-slick='{literal}{"asNavFor":"[data-slick].product-thumbs","rows": 0,"slidesToShow": 1,"arrows":false}{/literal}' data-count="{$product.images|count}">
+            <div class="product-img">
+                <div class="">
+                    {if $product.cover}
 
-           <img class="img-fluid"
-         srcset="{$product.cover.bySize.medium_default.url} 452w,
-           {$product.cover.bySize.pdt_180.url} 180w,
-           {$product.cover.bySize.pdt_300.url} 300w,
-           {$product.cover.bySize.pdt_360.url} 360w,
-           {$product.cover.bySize.pdt_540.url} 540w"
-         src="{$product.cover.bySize.medium_default.url}"
-         alt="{$product.cover.legend}" title="{$product.cover.legend}">
-           {elseif isset($urls.no_picture_image)}
-           <img class="img-fluid" src="{$urls.no_picture_image.bySize.large_default.url}">
-           {else}
-           <img src = "data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
-           {/if}
+                        <img class="img-fluid"
+                            srcset="{$product.cover.bySize.medium_default.url} 452w,
+                            {$product.cover.bySize.pdt_180.url} 180w,
+                            {$product.cover.bySize.pdt_300.url} 300w,
+                            {$product.cover.bySize.pdt_360.url} 360w,
+                            {$product.cover.bySize.pdt_540.url} 540w"
+                            src="{$product.cover.bySize.medium_default.url}"
+                            alt="{$product.cover.legend}" title="{$product.cover.legend}">
+                        {elseif isset($urls.no_picture_image)}
+                            <img class="img-fluid" src="{$urls.no_picture_image.bySize.large_default.url}">
+                        {else}
+                            <img src = "data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+                        {/if}
+                    <noscript>
+                        <img class="img-fluid" src="{$product.cover.bySize.medium_default.url}" alt="{$product.cover.legend}">
+                    </noscript>
+                </div>
+            </div>
 
+            {foreach from=$product.images item=image name="images"}
+                {if $image.id_image != $product.cover.id_image}
 
-
-        <noscript>
-            <img class="img-fluid" src="{$product.cover.bySize.medium_default.url}" alt="{$product.cover.legend}">
-        </noscript>
-       </div>
-   </div>
-
-      {foreach from=$product.images item=image name="images"}
-          {if $image.id_image != $product.cover.id_image}
-
-      <div class="product-img">
-          <div class="rc">
-              <img
-                      class="img-fluid lazyload"
-                      {if !$smarty.foreach.images.first && !$product.cover}data-sizes="auto"{/if}
-                      {if !$smarty.foreach.images.first && !$product.cover}data-{/if}srcset="{$image.bySize.medium_default.url} 452w,
-                   {$image.bySize.pdt_180.url} 180w,
-                   {$image.bySize.pdt_300.url} 300w,
-                   {$image.bySize.pdt_360.url} 360w,
-                   {$image.bySize.pdt_540.url} 540w"
+            <div class="product-img">
+                <div class="rc">
+                    <img
+                        class="img-fluid lazyload"
+                        {if !$smarty.foreach.images.first && !$product.cover}data-sizes="auto"{/if}
+                        {if !$smarty.foreach.images.first && !$product.cover}data-{/if}srcset="{$image.bySize.medium_default.url} 452w,
+                        {$image.bySize.pdt_180.url} 180w,
+                        {$image.bySize.pdt_300.url} 300w,
+                        {$image.bySize.pdt_360.url} 360w,
+                        {$image.bySize.pdt_540.url} 540w"
                       {if !$smarty.foreach.images.first && !$product.cover}data-{/if}src="{$image.bySize.medium_default.url}"
                       alt="{$image.legend}"
                       title="{$image.legend}">
-              <noscript>
-                  <img class="img-fluid" src="{$image.bySize.medium_default.url}" alt="{$image.legend}">
-              </noscript>
-          </div>
-      </div>
+                    <noscript>
+                        <img class="img-fluid" src="{$image.bySize.medium_default.url}" alt="{$image.legend}">
+                    </noscript>
+                </div>
+            </div>
           {/if}
       {/foreach}
-  </div>
+        </div>
       {if $product.cover}
       <button type="button" class="btn btn-link btn-zoom hidden-sm-down product-layer-zoom" data-toggle="modal" data-target="#product-modal">
           <i class="material-icons zoom-in">&#xE8FF;</i>
@@ -86,7 +83,9 @@
 
   {block name='product_images'}
       {if $product.images|count > 1}
-      <div class="product-thumbs js-qv-product-images hidden-sm-down slick__arrow-outside" data-slick='{literal}{"asNavFor":"[data-slick].products-imagescover","slidesToShow": {/literal}{if $product.images|count > 2}3{else}2{/if}{literal}, "slidesToScroll": 1,"focusOnSelect": true,"centerMode":false,"rows": 0,"variableWidth": true}{/literal}' data-count="{$product.images|count}">
+      <div class="product-thumbs js-qv-product-images slick__arrow-outside" 
+        data-slick='{literal}{"asNavFor":"[data-slick].products-imagescover","vertical": true,"verticalSwiping": true,"slidesToShow": {/literal}{if $product.images|count > 2}3{else}2{/if}{literal}, "slidesToScroll": 1,"focusOnSelect": true,"centerMode":true,"rows": 0}{/literal}' data-count="{$product.images|count}"
+        style="width: 20% !important;float:left;margin-left: 15px;">
           <div class="product-thumb slick-active">
               <div class="rc">
                   <img

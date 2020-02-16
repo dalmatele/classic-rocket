@@ -10,8 +10,9 @@ export default class SlickSlider {
             }
 
             self.slick({
-                prevArrow:"<button type=\"button\" class=\"btn btn-link slick-prev slick-arrow\"><i class=\"material-icons left\">&#xE314;</i></button>",
-                nextArrow:"<button type=\"button\" class=\"btn btn-link slick-next slick-arrow\"><i class=\"material-icons right\">&#xE315;</i></button>"
+                // http://www.pdqcoders.com/font-based-icons.html
+                prevArrow:"<button type=\"button\" class=\"btn btn-link slick-prev slick-arrow hidden-md-down\" style=\"margin-left:70%;margin-top:269%;opacity:0.5;\"><i class=\"material-icons up\">&#xE313;</i></button>",
+                nextArrow:"<button type=\"button\" class=\"btn btn-link slick-next slick-arrow hidden-md-down\" style=\"margin-right:70%;margin-top: -42%;opacity:0.5;\"><i class=\"material-icons down\">&#xE316;</i></button>"
 
                 });
         });

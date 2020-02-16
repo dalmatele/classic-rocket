@@ -78,19 +78,7 @@
           {block name='product_prices'}
             {include file='catalog/_partials/product-prices.tpl'}
           {/block}
-
-          <div class="product-information">
-            {block name='product_description_short'}
-              <div id="product-description-short-{$product.id}">{$product.description_short nofilter}</div>
-            {/block}
-
-            {if $product.is_customizable && count($product.customizations.fields)}
-              {block name='product_customization'}
-                {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
-              {/block}
-            {/if}
-
-            <div class="product-actions">
+          <div class="product-actions">
               {block name='product_buy'}
                 <form action="{$urls.pages.cart}" method="post" id="add-to-cart-or-refresh">
                   <input type="hidden" name="token" value="{$static_token}">
@@ -120,11 +108,7 @@
 
                   {block name='product_add_to_cart'}
                     {include file='catalog/_partials/product-add-to-cart.tpl'}
-                  {/block}
-
-                  {block name='product_additional_info'}
-                    {include file='catalog/_partials/product-additional-info.tpl'}
-                  {/block}
+                  {/block}                  
 
                   {block name='product_refresh'}
                       {if !isset($product.product_url)}
@@ -135,16 +119,28 @@
               {/block}
 
             </div>
+          <div class="product-information">
+            {block name='product_description_short'}
+              <div style="font-weight: bold;">Thông tin sản phẩm</div>
+              <div id="product-description-short-{$product.id}">{$product.description_short nofilter}</div>
+            {/block}
+            {block name='product_additional_info'}
+              {include file='catalog/_partials/product-additional-info.tpl'}
+            {/block}
+            {if $product.is_customizable && count($product.customizations.fields)}
+              {block name='product_customization'}
+                {include file="catalog/_partials/product-customization.tpl" customizations=$product.customizations}
+              {/block}
+            {/if}
+            
 
             {block name='hook_display_reassurance'}
               {hook h='displayReassurance'}
             {/block}
 
-          {block name='product_tabs'}
-              {include file='catalog/_partials/product-tabs.tpl'}
-          {/block}
-
-
+            {block name='product_tabs'}
+                {include file='catalog/_partials/product-tabs.tpl'}
+            {/block}          
           </div>
       </div>
     </div>
